@@ -1,0 +1,66 @@
+{
+  "name": "@thaoms/engage-js-api",
+  "version": "0.1.0",
+  "description": "Engage JS API",
+  "keywords": [
+    "clarabridge",
+    "engage",
+    "api"
+  ],
+  "main": "src/index.js",
+  "scripts": {
+    "docs": "jsdoc -r -c jsdoc.json",
+    "test-run": "babel-node index.js",
+    "prettier": "prettier --check ./src/**",
+    "lint": "eslint ./src --ext .js",
+    "lint-fix": "npm lint --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thaoms/engage-js-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thaoms/engage-js-api/issues"
+  },
+  "author": "Thomas Van Kerckvoorde <thomas.vankerckvoorde@clarabridge.com>",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "core-js": "3",
+    "eslint": "^6.2.2",
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.0",
+    "jsdoc": "^3.6.3",
+    "minami": "^1.2.3",
+    "prettier": "1.18.2"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "useBuiltIns": "entry",
+          "corejs": "3"
+        }
+      ]
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 120,
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "useTabs": false,
+    "semi": true,
+    "bracketSpacing": true,
+    "arrowParens": "always"
+  }
+}
