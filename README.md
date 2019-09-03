@@ -10,7 +10,7 @@ This code is written in ES6+ and uses a lot of newer features, transpiling and c
 
 This plugin requires a Http Client, so we made one for your convenience but you are free to implement one for yourself.
 
-https://github.com/engagor/engage-http-client-axios
+https://github.com/thaoms/engage-js-httpclient-axios
 
 ## Installation
 
