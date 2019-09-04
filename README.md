@@ -29,7 +29,7 @@ import HttpClientAxios from "@thaoms/engage-js-httpclient-axios";
 /* Step 1 */
 const authorizationUrl = EngageApi.getAuthorizationUrl({
     clientId: 'client_id',
-    scope: 'accounts_read accounts_write',
+    scope: ['accounts_read', 'accounts_write'],
 });
 
 /* handle request and response */
