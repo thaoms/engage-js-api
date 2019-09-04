@@ -3,7 +3,7 @@ const HttpClientAxios = EngageApi.HttpClientAxios;
 
 const authorizationUrl = EngageApi.getAuthorizationUrl({
     clientId: 'xxxxxxxxxxxxxxxxxxxxxxxxx',
-    scope: 'accounts_read accounts_write',
+    scope: ['accounts_read', 'accounts_write'],
 });
 
 console.log(authorizationUrl);

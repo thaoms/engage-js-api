@@ -33,6 +33,11 @@ class EngageApi {
         if (!accessToken) {
             throw 'Access Token is required';
         }
+
+        if (!httpClient) {
+            throw 'A valid Http Client is required, use ours, or make one based on ours';
+        }
+
         this.httpClient = httpClient;
         this.accessToken = accessToken;
     }
@@ -44,7 +49,7 @@ class EngageApi {
      * @static
      * @param {object} config - Configuration object
      * @param {string} config.clientId
-     * @param {string} config.scope - ex. accounts_read accounts_write
+     * @param {array} config.scope - ex. ['accounts_read', 'accounts_write']
      * @param {string} config.state
      * @returns {string}
      */
@@ -55,8 +60,9 @@ class EngageApi {
             requestUrl += `&state=${encodeURIComponent(state)}`;
         }
 
-        if (scope) {
-            requestUrl += `&scope=${encodeURIComponent(scope)}`;
+        if (scope && Array.isArray(scope)) {
+            const scopeString = scope.join(' ');
+            requestUrl += `&scope=${encodeURIComponent(scopeString)}`;
         }
 
         return requestUrl;
