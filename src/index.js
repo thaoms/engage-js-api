@@ -134,8 +134,8 @@ class EngageApi {
         let url = new URL(`/${accountId}/settings/users`, EngageApi.baseUrl);
 
         url = this.addQueryParams(url, {
-            'limit': limit,
-            'page_token': pageToken,
+            limit: limit,
+            page_token: pageToken,
         });
 
         return await this.request(url);
@@ -158,8 +158,8 @@ class EngageApi {
         let url = new URL(`/${accountId}/settings/userroles`, EngageApi.baseUrl);
 
         url = this.addQueryParams(url, {
-            'limit': limit,
-            'page_token': pageToken,
+            limit: limit,
+            page_token: pageToken,
         });
 
         return await this.request(url.toString());
@@ -265,8 +265,8 @@ class EngageApi {
         let url = new URL(`/${accountId}/settings/topics/`, EngageApi.baseUrl);
 
         url = this.addQueryParams(url, {
-            'limit': limit,
-            'page_token': pageToken,
+            limit: limit,
+            page_token: pageToken,
         });
 
         return await this.request(url);
@@ -289,8 +289,8 @@ class EngageApi {
         let url = new URL(`/${accountId}/settings/teams/`, EngageApi.baseUrl);
 
         url = this.addQueryParams(url, {
-            'limit': limit,
-            'page_token': pageToken,
+            limit: limit,
+            page_token: pageToken,
         });
 
         return await this.request(url);
@@ -387,6 +387,459 @@ class EngageApi {
         );
     };
 
+    /**
+     * Deletes a Team for a certain account.
+     * @function deleteTeamForAccount
+     * @memberOf EngageApi
+     * @param {string} accountId
+     * @param {string} teamId
+     * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} - Boolean that indicates if Team was deleted.
+     */
+    deleteTeamForAccount = async (accountId, teamId) => {
+        if (!accountId) {
+            throw 'Please give an account ID';
+        }
+
+        if (!teamId) {
+            throw 'Please give a team ID';
+        }
+
+        let url = new URL(`/${accountId}/settings/team/${teamId}`, EngageApi.baseUrl);
+
+        return await this.request(
+            url,
+            'delete',
+        );
+    };
+
+    /**
+     * Returns the list of tags for a certain account.
+     * @function getTagsForAccount
+     * @memberOf EngageApi
+     * @param {string} accountId
+     * @param {string} [limit] - Amount of mentions to return. (Allowed: 1 to 200.)
+     * @param {string} [pageToken] - Paging parameter.
+     * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} - paged_list of tag items.
+     */
+    getTagsForAccount = async (accountId, limit, pageToken) => {
+        if (!accountId) {
+            throw 'Please give an account ID';
+        }
+
+        let url = new URL(`/${accountId}/settings/tags`, EngageApi.baseUrl);
+
+        url = this.addQueryParams(url, {
+            limit: limit,
+            page_token: pageToken,
+        });
+
+        return await this.request(
+            url,
+            'get',
+        );
+    };
+
+    /**
+     * Returns the list of the publishing guidelines for an account.
+     * @function getPublishingGuidelinesForAccount
+     * @memberOf EngageApi
+     * @param {string} accountId
+     * @param {string} [limit] - Amount of mentions to return. (Allowed: 1 to 200.)
+     * @param {string} [pageToken] - Paging parameter.
+     * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} -array paged_list of publishing_guideline items.
+     */
+    getPublishingGuidelinesForAccount = async (accountId, limit, pageToken) => {
+        if (!accountId) {
+            throw 'Please give an account ID';
+        }
+
+        let url = new URL(`/${accountId}/settings/publishing_guidelines`, EngageApi.baseUrl);
+
+        url = this.addQueryParams(url, {
+            limit: limit,
+            page_token: pageToken,
+        });
+
+        return await this.request(
+            url,
+            'get',
+        );
+    };
+
+    /**
+     * Returns the list of Social Profile Groups for a certain account.
+     * @function getSocialProfileGroupsForAccount
+     * @memberOf EngageApi
+     * @param {string} accountId
+     * @param {string} [limit] - Amount of mentions to return. (Allowed: 1 to 200.)
+     * @param {string} [pageToken] - Paging parameter.
+     * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} -a paged_list of profile_group items.
+     */
+    getSocialProfileGroupsForAccount = async (accountId, limit, pageToken) => {
+        if (!accountId) {
+            throw 'Please give an account ID';
+        }
+
+        let url = new URL(`/${accountId}/settings/profilegroups`, EngageApi.baseUrl);
+
+        url = this.addQueryParams(url, {
+            limit: limit,
+            page_token: pageToken,
+        });
+
+        return await this.request(
+            url,
+            'get',
+        );
+    };
+
+    /**
+     * Returns the list of Social Profile Groups for a certain account.
+     * @function addSocialProfileGroupForAccount
+     * @memberOf EngageApi
+     * @param {string} accountId
+     * @param {object} profileGroup - A JSON encoded array of a Social Profile Group you want to make. Structure of the object should be like profile_group.
+     * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} - profile_group The new Social Profile Group.
+     */
+    addSocialProfileGroupForAccount = async (accountId, profileGroup) => {
+        if (!accountId) {
+            throw 'Please give an account ID';
+        }
+
+        if (!profileGroup) {
+            throw 'Please give a JSON encoded array of a Social Profile Group';
+        }
+
+        let url = new URL(`/${accountId}/settings/profilegroups`, EngageApi.baseUrl);
+
+        const body = {
+            profile_group: profileGroup,
+        };
+
+        return await this.request(
+            url,
+            'post',
+            null,
+            body,
+        );
+    };
+
+    /**
+     * Edit a Social Profile Group for a certain account. When you provide profiles, these will replace the current profiles of the Social Profile Group
+     * @function addSocialProfileGroupForAccount
+     * @memberOf EngageApi
+     * @param {string} accountId
+     * @param {object} groupId
+     * @param {object} updates - A JSON encoded array of changes you want to make. Structure of the object should be like profile_group, with only those properties you want to update
+     * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} - profile_group The new Social Profile Group.
+     */
+    addSocialProfileGroupForAccount = async (accountId, groupId, updates) => {
+        if (!accountId) {
+            throw 'Please give an account ID';
+        }
+
+        if (!groupId) {
+            throw 'Please give a valid group id';
+        }
+
+        if (!updates) {
+            throw 'Please give a JSON encoded array of changes you want to make';
+        }
+
+        let url = new URL(`/${accountId}/settings/profilegroup/${groupId}`, EngageApi.baseUrl);
+
+        const body = {
+            updates: updates,
+        };
+
+        return await this.request(
+            url,
+            'post',
+            null,
+            body,
+        );
+    };
+
+    /**
+     * Deletes a Social Profile Group for a certain account.
+     * @function deleteSocialProfileGroupForAccount
+     * @memberOf EngageApi
+     * @param {string} accountId
+     * @param {object} groupId
+     * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} - Boolean that indicates if Social Profile Group was deleted.
+     */
+    deleteSocialProfileGroupForAccount = async (accountId, groupId) => {
+        if (!accountId) {
+            throw 'Please give an account ID';
+        }
+
+        if (!groupId) {
+            throw 'Please give a valid group id';
+        }
+
+        let url = new URL(`/${accountId}/settings/profilegroup/${groupId}`, EngageApi.baseUrl);
+
+        return await this.request(
+            url,
+            'delete',
+        );
+    };
+
+    /**
+     * Returns the audit log with settings changes to the account.
+     * @function getAuditLogSettingsChangesForAccount
+     * @memberOf EngageApi
+     * @param {string} accountId
+     * @param {object} [dateFrom=null] - ISO 8601 formatted date, defaults to 28 days ago.
+     * @param {object} [dateTo=null] - ISO 8601 formatted date, defaults to now.
+     * @param {string} [types=''] - Comma separated list of types of changes. See response documentation for possible values. If empty: changes for all types.
+     * @param {string} [topicIds=''] - Comma separated list of topic ids to search in. If empty: changes for all topics.
+     * @param {string} [userId=''] - Id of the user who did the changes. If empty: changes for all users.
+     * @param {string} [pageToken=''] - Paging parameter.
+     * @param {string} [limit=''] - Amount of history items to return. (Allowed: 1 to 200).
+     * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} - paged_list of history_item items.
+     */
+    getAuditLogSettingsChangesForAccount = async (accountId, dateFrom = null, dateTo = null, types = '', topicIds = '', userId = '', pageToken = '', limit = '') => {
+
+        // @TODO GET OR POST?
+        if (!accountId) {
+            throw 'Please give an account ID';
+        }
+
+        let url = new URL(`/${accountId}/settings/history`, EngageApi.baseUrl);
+
+        url = this.addQueryParams(url, {
+            date_from: dateFrom,
+            date_to: dateTo,
+            types: types,
+            topic_ids: topicIds,
+            user_id: userId,
+            page_token: pageToken,
+            limit: limit,
+        });
+
+        return await this.request(
+            url,
+            'get',
+        );
+    };
+
+    /**
+     * Returns the list of custom attributes/contact fields for an account.
+     * @function getCustomFieldsForAccount
+     * @memberOf EngageApi
+     * @param {string} accountId
+     * @param {string} [limit] - Amount of mentions to return. (Allowed: 1 to 200.)
+     * @param {string} [pageToken] - Paging parameter.
+     * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} - paged_list of contact_customattributes items (without the "value" property).
+     */
+    getCustomFieldsForAccount = async (accountId, limit, pageToken) => {
+        if (!accountId) {
+            throw 'Please give an account ID';
+        }
+
+        let url = new URL(`/${accountId}/settings/customattributes`, EngageApi.baseUrl);
+
+        url = this.addQueryParams(url, {
+            limit: limit,
+            page_token: pageToken,
+        });
+
+        return await this.request(
+            url,
+            'get',
+        );
+    };
+
+    /**
+     * Returns a list of folders of the canned responses.
+     * @function getCannedReponsesFoldersForAccount
+     * @memberOf EngageApi
+     * @param {string} accountId
+     * @param {string} [limit] - Amount of canned responses to return. (Allowed: 1 to 50).
+     * @param {string} [pageToken] - Paging parameter.
+     * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} - paged_list of canned_response_folder items.
+     */
+    getCannedReponsesFoldersForAccount = async (accountId, limit, pageToken) => {
+        if (!accountId) {
+            throw 'Please give an account ID';
+        }
+
+        let url = new URL(`/${accountId}/settings/canned_responses_folders`, EngageApi.baseUrl);
+
+        url = this.addQueryParams(url, {
+            limit: limit,
+            page_token: pageToken,
+        });
+
+        return await this.request(
+            url,
+            'get',
+        );
+    };
+
+    /**
+     * Returns a list of canned responses.
+     * @function getCannedResponsesForAccount
+     * @memberOf EngageApi
+     * @param {string} accountId
+     * @param {string} [limit] - Amount of canned responses to return. (Allowed: 1 to 50).
+     * @param {string} [pageToken] - Paging parameter.
+     * @param {string} [topicId=''] - The topic ID of the mention
+     * @param {string} [ymid=''] - The YMID of the mention
+     * @param {string} [query=''] - Search for specific words in the canned responses
+     * @param {object} [folderIds={}] - A JSON encoded array of the ids of the folders you want to filter on
+     * @param {string} [order=''] - The sorting order (Alphabetically A-Z: sort_alpha_asc, Alphabetically Z-A: sort_alpha_desc, TYPE A-Z: sort_type_asc, TYPE Z-A: sort_type_desc, Least Frequently Used: sort_used_count_asc, Most Frequently Used: sort_used_count_desc, Most Recently Created: sort_most_recently_created, Least Recently Created: sort_least_recently_created, Most Recently Updated: sort_most_recently_updated)
+     * @param {string} [replyType=''] - The reply type (post, privatemessage, comment, ...)
+     * @param {string} [serviceType=''] - The type of the service (This parameter is needed for [profile.name] and [profile.url])
+     * @param {string} [serviceId=''] - The ID of the service (This parameter is needed for [profile.name] and [profile.url])
+     * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} - paged_list of canned_response items.
+     */
+    getCannedResponsesForAccount = async (accountId, limit, pageToken, topicId = '', ymid = '', query = '', folderIds = {}, order = '', replyType = '', serviceType = '', serviceId = '') => {
+        if (!accountId) {
+            throw 'Please give an account ID';
+        }
+
+        let url = new URL(`/${accountId}/settings/canned_responses`, EngageApi.baseUrl);
+
+        url = this.addQueryParams(url, {
+            limit: limit,
+            page_token: pageToken,
+            topic_id: topicId,
+            ymid: ymid,
+            query: query,
+            folder_ids: folderIds,
+            order: order,
+            reply_type: replyType,
+            service_type: serviceType,
+            service_id: serviceId,
+        });
+
+        return await this.request(
+            url,
+            'get',
+        );
+    };
+
+    /**
+     * Returns the list of Business Hours Schedules for a certain account.
+     * @function getBusinessHoursScheduleForAccount
+     * @memberOf EngageApi
+     * @param {string} accountId
+     * @param {string} [limit] - Amount of canned responses to return. (Allowed: 1 to 50).
+     * @param {string} [pageToken] - Paging parameter.
+     * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} - paged_list of business_hours_schedule items.
+     */
+    getBusinessHoursScheduleForAccount = async (accountId, limit, pageToken) => {
+        if (!accountId) {
+            throw 'Please give an account ID';
+        }
+
+        let url = new URL(`/${accountId}/settings/businesshoursschedules`, EngageApi.baseUrl);
+
+        url = this.addQueryParams(url, {
+            limit: limit,
+            page_token: pageToken,
+        });
+
+        return await this.request(
+            url,
+            'get',
+        );
+    };
+
+    /**
+     * Add a new Business Hours Schedule for a certain account.
+     * @function addBusinessHoursScheduleForAccount
+     * @memberOf EngageApi
+     * @param {string} accountId
+     * @param {object} businessHoursSchedule - A JSON encoded array of a Business Hours Schedule you want to make. Structure of the object should be like business_hours_schedule. Eg. {"name":"My schedule","timezone":"Europe/Brussels","periods":[{"dayofweek":1,"start":"0900","end":"1500"},{"dayofweek":1,"start":"1600","end":"2200"},{"dayofweek":2,"start":"0900","end":"2300"}]}
+     * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} - business_hours_schedule The new Business Hours Schedule.
+     */
+    addBusinessHoursScheduleForAccount = async (accountId, businessHoursSchedule) => {
+        if (!accountId) {
+            throw 'Please give an account ID';
+        }
+
+        if (!businessHoursSchedule) {
+            throw 'Please give a valid JSON encoded array of a Business Hours Schedule you want to make.';
+        }
+
+        let url = new URL(`/${accountId}/settings/businesshoursschedules`, EngageApi.baseUrl);
+
+        const body = {
+            business_hours_schedule: businessHoursSchedule,
+        };
+
+        return await this.request(
+            url,
+            'post',
+            null,
+            body,
+        );
+    };
+
+    /**
+     * Edit a business hours schedule for a certain account.
+     * @function editBusinessHoursScheduleForAccount
+     * @memberOf EngageApi
+     * @param {string} accountId
+     * @param {string} id
+     * @param {object} updates - A JSON encoded array of changes you want to make. Structure of the object should be like business_hours_schedule, with only those properties you want to update.
+     * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} - business_hours_schedule The updated Business Hours Schedule object.
+     */
+    editBusinessHoursScheduleForAccount = async (accountId, id, updates) => {
+        if (!accountId) {
+            throw 'Please give an account ID';
+        }
+
+        if (!id) {
+            throw 'Please give a valid Business Hours Schedule ID.';
+        }
+
+        if (!updates) {
+            throw 'Please give a valid JSON encoded array of changes you want to make.';
+        }
+
+        let url = new URL(`/${accountId}/settings/businesshoursschedules/${id}`, EngageApi.baseUrl);
+
+        const body = {
+            updates: updates,
+        };
+
+        return await this.request(
+            url,
+            'post',
+            null,
+            body,
+        );
+    };
+
+    /**
+     * Deletes a business hours schedule for a certain account.
+     * @function deleteBusinessHoursScheduleForAccount
+     * @memberOf EngageApi
+     * @param {string} accountId
+     * @param {string} id
+     * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} - Boolean that indicates if business hours schedule was deleted.
+     */
+    deleteBusinessHoursScheduleForAccount = async (accountId, id) => {
+        if (!accountId) {
+            throw 'Please give an account ID';
+        }
+
+        if (!id) {
+            throw 'Please give a valid Business Hours Schedule ID.';
+        }
+
+        let url = new URL(`/${accountId}/settings/businesshoursschedules/${id}`, EngageApi.baseUrl);
+
+        return await this.request(
+            url,
+            'delete',
+        );
+    };
+
     /** Dashboard API calls **/
 
     /**
@@ -419,9 +872,9 @@ class EngageApi {
         let url = new URL(`/${accountId}/dashboards/component/${dashboardId}/${componentId}`, EngageApi.baseUrl);
 
         url = this.addQueryParams(url, {
-            'filter': filter,
-            'date_from': dateFrom,
-            'date_to': dateTo,
+            filter: filter,
+            date_from: dateFrom,
+            date_to: dateTo,
         });
 
         return await this.request(url);
@@ -452,9 +905,9 @@ class EngageApi {
         let url = new URL(`/${accountId}/dashboards/export/${dashboardId}`, EngageApi.baseUrl);
 
         url = this.addQueryParams(url, {
-            'filter': filter,
-            'date_from': dateFrom,
-            'date_to': dateTo,
+            filter: filter,
+            date_from: dateFrom,
+            date_to: dateTo,
         });
 
         return await this.request(url);
@@ -499,9 +952,9 @@ class EngageApi {
         let url = new URL(`/${accountId}/filter/suggestions`, EngageApi.baseUrl);
 
         url = this.addQueryParams(url, {
-            'limit': limit,
-            'page_token': pageToken,
-            'query': query,
+            limit: limit,
+            page_token: pageToken,
+            query: query,
         });
 
         return await this.request(url);
@@ -526,7 +979,7 @@ class EngageApi {
      * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} - Array of facet items.
      */
     getInsights = async (accountId, facetDefinitions, filter, dateFrom, dateTo, topicIds, profileIds) => {
-        // TODO post or get?
+        // TODO post or get? NOT FINISHED
         if (!accountId) {
             throw 'Please give an account ID';
         }
@@ -538,9 +991,9 @@ class EngageApi {
         let url = new URL(`/${accountId}/insights/facets`, EngageApi.baseUrl);
 
         url = this.addQueryParams(url, {
-            'limit': limit,
-            'page_token': pageToken,
-            'query': query,
+            limit: limit,
+            page_token: pageToken,
+            query: query,
         });
 
         return await this.request(url);
@@ -571,12 +1024,12 @@ class EngageApi {
         let url = new URL(`/${accountId}/security/audit`, EngageApi.baseUrl);
 
         url = this.addQueryParams(url, {
-            'date_from': dateFrom,
-            'date_to': dateTo,
-            'events': events,
-            'user_id': userId,
-            'page_token': pageToken,
-            'limit': limit,
+            date_from: dateFrom,
+            date_to: dateTo,
+            events: events,
+            user_id: userId,
+            page_token: pageToken,
+            limit: limit,
         });
 
         return await this.request(url);
@@ -640,7 +1093,7 @@ class EngageApi {
         let url = new URL(`/${accountId}/crisis/plans`, EngageApi.baseUrl);
 
         url = this.addQueryParams(url, {
-            'active_only': activeOnly,
+            active_only: activeOnly,
         });
 
         return await this.request(url);
@@ -704,7 +1157,7 @@ class EngageApi {
 
         // @TODO Not sure if GET or POST
         url = this.addQueryParams(url, {
-            'string': string,
+            string: string,
         });
 
         return await this.request(url);
@@ -722,7 +1175,7 @@ class EngageApi {
 
         // @TODO Not sure if GET or POST
         url = this.addQueryParams(url, {
-            'string': string,
+            string: string,
         });
 
         return await this.request(url);
@@ -741,8 +1194,8 @@ class EngageApi {
 
         // @TODO Not sure if GET or POST
         url = this.addQueryParams(url, {
-            'string': string,
-            'language': language,
+            string: string,
+            language: language,
         });
 
         return await this.request(url);
@@ -777,8 +1230,8 @@ class EngageApi {
         let url = new URL(`/me/accounts`, EngageApi.baseUrl);
 
         url = this.addQueryParams(url, {
-            'limit': limit,
-            'page_token': pageToken,
+            limit: limit,
+            page_token: pageToken,
         });
 
         return await this.request(url);
@@ -796,8 +1249,8 @@ class EngageApi {
         let url = new URL(`/me/connectedprofiles`, EngageApi.baseUrl);
 
         url = this.addQueryParams(url, {
-            'limit': limit,
-            'page_token': pageToken,
+            limit: limit,
+            page_token: pageToken,
         });
 
         return await this.request(url);
