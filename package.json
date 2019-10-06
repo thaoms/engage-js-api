@@ -15,7 +15,8 @@
     "lint": "eslint ./src --ext .js",
     "lint-fix": "npm lint --fix",
     "upgrade-interactive": "ncu",
-    "update-packages": "ncu -u"
+    "update-packages": "ncu -u",
+    "release": "npm version minor && npm publish"
   },
   "repository": {
     "type": "git",
