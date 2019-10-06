@@ -83,6 +83,21 @@ class EngageApi {
         return `${EngageApi.tokenUrl}?client_id=${clientId}&client_secret=${clientSecret}&grant_type=authorization_code&code=${code}`;
     };
 
+    /**
+     * Returns the refresh authorization token url
+     * @function getRefreshAuthorizationTokenUrl
+     * @memberOf EngageApi
+     * @static
+     * @param {object} config - Configuration object
+     * @param {string} config.clientId
+     * @param {string} config.clientSecret
+     * @param {string} config.refreshToken
+     * @returns {string}
+     */
+    static getRefreshAuthorizationTokenUrl = ({ clientId, clientSecret, refreshToken }) => {
+        return `${EngageApi.tokenUrl}?client_id=${clientId}&client_secret=${clientSecret}&grant_type=refresh_token&refresh_token=${refreshToken}`;
+    };
+
     /** Generic request method - used to modify the url before sending it to the http client.
      * @private
      * @memberOf EngageApi
