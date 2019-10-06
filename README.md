@@ -1,5 +1,3 @@
-This library is a work in progress.
-
 # engage-js-api
 
 Engage JS API is a package that delivers some easy to use methods to access our api from your Node.js application.
@@ -46,9 +44,7 @@ const tokenUrl = EngageApi.getAuthorizationTokenUrl({
 /* ... */
 
 const engageApi = new EngageApi(
-    new HttpClientAxios({
-        headers: {},
-    }),
+    new HttpClientAxios(),
     'access_token_you_got_from_step2'
 );
 
