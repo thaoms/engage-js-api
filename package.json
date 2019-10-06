@@ -16,7 +16,7 @@
     "lint-fix": "npm lint --fix",
     "upgrade-interactive": "ncu",
     "update-packages": "ncu -u",
-    "release": "npm version minor && npm publish"
+    "release": "npm version minor && npm publish && git push && git push --tags"
   },
   "repository": {
     "type": "git",
