@@ -1,4 +1,4 @@
-import EngageApi from "@thaoms/engage-js-api";
+import EngageApi from '@thaoms/engage-js-api';
 const HttpClientAxios = EngageApi.HttpClientAxios;
 
 const authorizationUrl = EngageApi.getAuthorizationUrl({
@@ -23,11 +23,11 @@ const engageApi = new EngageApi(
     'xxxxxxxxxxxxxxxxxxxxxxxxx'
 );
 
-engageApi.getUsersForAccount('17881', 20)
-        .then((result) => {
-            console.log(result);
-        }).catch((e) => {
-            console.log(e);
-        });
-
-
+engageApi
+    .getUsersForAccount('17881', 20)
+    .then((result) => {
+        console.log(result);
+    })
+    .catch((e) => {
+        console.log(e);
+    });
