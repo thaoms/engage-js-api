@@ -4,7 +4,7 @@ Engage JS API is a package that delivers some easy to use methods to access our 
 
 Note that you'll have to handle the authentication flow by yourself.
 
-This code is written in ES6+ and uses a lot of newer features, transpiling and compiling are up to you.
+This code is written in ES6+ and uses a lot of newer features, transpiling and compiling are up to you if you use the /src folder.
 
 This plugin requires a Http Client, so we made one for your convenience but you are free to implement one for yourself.
 
@@ -21,8 +21,14 @@ We recommend installing with the `--only=prod` flag if you don't want any of the
 ## Usage
 
 ```javascript
+/** CJS (transpiled version) **/
 import EngageApi from "@thaoms/engage-js-api";
 import HttpClientAxios from "@thaoms/engage-js-httpclient-axios";
+
+/** Recommended (ES6 version, up to your build process) **/
+import EngageApi from "@thaoms/engage-js-api/src";
+import HttpClientAxios from "@thaoms/engage-js-httpclient-axios/src";
+
 
 /* Step 1 */
 const authorizationUrl = EngageApi.getAuthorizationUrl({
