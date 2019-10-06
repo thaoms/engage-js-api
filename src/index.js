@@ -215,12 +215,7 @@ class EngageApi {
             updates: updates,
         };
 
-        return await this.request(
-            url,
-            'post',
-            null,
-            body,
-        );
+        return await this.request(url, 'post', null, body);
     };
 
     /**
@@ -242,10 +237,7 @@ class EngageApi {
 
         let url = new URL(`/${accountId}/settings/user/${userId}`, EngageApi.baseUrl);
 
-        return await this.request(
-            url,
-            'delete',
-        );
+        return await this.request(url, 'delete');
     };
 
     /**
@@ -319,12 +311,7 @@ class EngageApi {
             team: team,
         };
 
-        return await this.request(
-            url,
-            'post',
-            null,
-            body
-        );
+        return await this.request(url, 'post', null, body);
     };
 
     /**
@@ -379,12 +366,7 @@ class EngageApi {
             options: options,
         };
 
-        return await this.request(
-            url,
-            'post',
-            null,
-            body
-        );
+        return await this.request(url, 'post', null, body);
     };
 
     /**
@@ -406,10 +388,7 @@ class EngageApi {
 
         let url = new URL(`/${accountId}/settings/team/${teamId}`, EngageApi.baseUrl);
 
-        return await this.request(
-            url,
-            'delete',
-        );
+        return await this.request(url, 'delete');
     };
 
     /**
@@ -433,10 +412,7 @@ class EngageApi {
             page_token: pageToken,
         });
 
-        return await this.request(
-            url,
-            'get',
-        );
+        return await this.request(url);
     };
 
     /**
@@ -460,10 +436,7 @@ class EngageApi {
             page_token: pageToken,
         });
 
-        return await this.request(
-            url,
-            'get',
-        );
+        return await this.request(url);
     };
 
     /**
@@ -487,10 +460,7 @@ class EngageApi {
             page_token: pageToken,
         });
 
-        return await this.request(
-            url,
-            'get',
-        );
+        return await this.request(url);
     };
 
     /**
@@ -516,12 +486,7 @@ class EngageApi {
             profile_group: profileGroup,
         };
 
-        return await this.request(
-            url,
-            'post',
-            null,
-            body,
-        );
+        return await this.request(url, 'post', null, body);
     };
 
     /**
@@ -552,12 +517,7 @@ class EngageApi {
             updates: updates,
         };
 
-        return await this.request(
-            url,
-            'post',
-            null,
-            body,
-        );
+        return await this.request(url, 'post', null, body);
     };
 
     /**
@@ -579,10 +539,7 @@ class EngageApi {
 
         let url = new URL(`/${accountId}/settings/profilegroup/${groupId}`, EngageApi.baseUrl);
 
-        return await this.request(
-            url,
-            'delete',
-        );
+        return await this.request(url, 'delete');
     };
 
     /**
@@ -599,7 +556,16 @@ class EngageApi {
      * @param {string} [limit=''] - Amount of history items to return. (Allowed: 1 to 200).
      * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} - paged_list of history_item items.
      */
-    getAuditLogSettingsChangesForAccount = async (accountId, dateFrom = null, dateTo = null, types = '', topicIds = '', userId = '', pageToken = '', limit = '') => {
+    getAuditLogSettingsChangesForAccount = async (
+        accountId,
+        dateFrom = null,
+        dateTo = null,
+        types = '',
+        topicIds = '',
+        userId = '',
+        pageToken = '',
+        limit = ''
+    ) => {
         if (!accountId) {
             throw 'Please give an account ID';
         }
@@ -640,10 +606,7 @@ class EngageApi {
             page_token: pageToken,
         });
 
-        return await this.request(
-            url,
-            'get',
-        );
+        return await this.request(url);
     };
 
     /**
@@ -667,10 +630,7 @@ class EngageApi {
             page_token: pageToken,
         });
 
-        return await this.request(
-            url,
-            'get',
-        );
+        return await this.request(url);
     };
 
     /**
@@ -690,7 +650,19 @@ class EngageApi {
      * @param {string} [serviceId=''] - The ID of the service (This parameter is needed for [profile.name] and [profile.url])
      * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} - paged_list of canned_response items.
      */
-    getCannedResponsesForAccount = async (accountId, limit, pageToken, topicId = '', ymid = '', query = '', folderIds = {}, order = '', replyType = '', serviceType = '', serviceId = '') => {
+    getCannedResponsesForAccount = async (
+        accountId,
+        limit,
+        pageToken,
+        topicId = '',
+        ymid = '',
+        query = '',
+        folderIds = {},
+        order = '',
+        replyType = '',
+        serviceType = '',
+        serviceId = ''
+    ) => {
         if (!accountId) {
             throw 'Please give an account ID';
         }
@@ -710,10 +682,7 @@ class EngageApi {
             service_id: serviceId,
         });
 
-        return await this.request(
-            url,
-            'get',
-        );
+        return await this.request(url);
     };
 
     /**
@@ -737,10 +706,7 @@ class EngageApi {
             page_token: pageToken,
         });
 
-        return await this.request(
-            url,
-            'get',
-        );
+        return await this.request(url);
     };
 
     /**
@@ -766,12 +732,7 @@ class EngageApi {
             business_hours_schedule: businessHoursSchedule,
         };
 
-        return await this.request(
-            url,
-            'post',
-            null,
-            body,
-        );
+        return await this.request(url, 'post', null, body);
     };
 
     /**
@@ -802,12 +763,7 @@ class EngageApi {
             updates: updates,
         };
 
-        return await this.request(
-            url,
-            'post',
-            null,
-            body,
-        );
+        return await this.request(url, 'post', null, body);
     };
 
     /**
@@ -829,10 +785,7 @@ class EngageApi {
 
         let url = new URL(`/${accountId}/settings/businesshoursschedules/${id}`, EngageApi.baseUrl);
 
-        return await this.request(
-            url,
-            'delete',
-        );
+        return await this.request(url, 'delete');
     };
 
     /** Dashboard API calls **/
@@ -954,7 +907,6 @@ class EngageApi {
 
     /** end Filter API calls **/
 
-
     /** Insights API calls **/
 
     /**
@@ -1064,12 +1016,7 @@ class EngageApi {
             crisis_name: crisis_name,
         };
 
-        return await this.request(
-            url,
-            'post',
-            null,
-            body
-        );
+        return await this.request(url, 'post', null, body);
     };
 
     /**
@@ -1128,12 +1075,7 @@ class EngageApi {
             done: done,
         };
 
-        return await this.request(
-            url,
-            'post',
-            null,
-            body
-        );
+        return await this.request(url, 'post', null, body);
     };
     /** end Crisis API calls **/
 
@@ -1191,7 +1133,6 @@ class EngageApi {
 
         return await this.request(url);
     };
-
 
     /** end Tools API calls **/
 
@@ -1261,7 +1202,6 @@ class EngageApi {
 
     /** end User API calls **/
 
-
     /** Inbox API calls **/
 
     /**
@@ -1287,12 +1227,7 @@ class EngageApi {
             mentions: mentions,
         };
 
-        return await this.request(
-            url,
-            'post',
-            null,
-            body
-        );
+        return await this.request(url, 'post', null, body);
     };
 
     /**
@@ -1319,10 +1254,7 @@ class EngageApi {
             topics_ids: topicIds,
         });
 
-        return await this.request(
-            url,
-            'get',
-        );
+        return await this.request(url);
     };
 
     /**
@@ -1355,12 +1287,7 @@ class EngageApi {
             options: options,
         };
 
-        return await this.request(
-            url,
-            'post',
-            null,
-            body,
-        );
+        return await this.request(url, 'post', null, body);
     };
 
     /**
@@ -1386,10 +1313,7 @@ class EngageApi {
 
         let url = new URL(`/${accountId}/inbox/contact/${contactId}`, EngageApi.baseUrl);
 
-        return await this.request(
-            url,
-            'delete',
-        );
+        return await this.request(url, 'delete');
     };
 
     /**
@@ -1459,12 +1383,7 @@ class EngageApi {
             options: options,
         };
 
-        return await this.request(
-            url,
-            'post',
-            null,
-            body,
-        );
+        return await this.request(url, 'post', null, body);
     };
 
     /**
@@ -1480,7 +1399,15 @@ class EngageApi {
      * @param {string} [sort] - Ordering of the contacts. Possible options: `dateadd:asc`, `dateadd:desc`, `lastupdate:asc`, `lastupdate:desc`
      * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} - paged_list of contact items, ordered by contact.id
      */
-    getContactsForAccount = async (accountId, requiredFields = null, filter = '', updatedSince, pageToken, limit, sort) => {
+    getContactsForAccount = async (
+        accountId,
+        requiredFields = null,
+        filter = '',
+        updatedSince,
+        pageToken,
+        limit,
+        sort
+    ) => {
         if (!accountId) {
             throw 'Please give an account ID';
         }
@@ -1511,7 +1438,14 @@ class EngageApi {
      * @param {string} [contextType='conversation'] - 	How you want to receive the list of mentions. Default this option is `conversation`. Other possibilities are: `conversation_with_you`, `notes` and `privatemessages`
      * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} - A list of context-objects
      */
-    getContextHistoryOfMentionForAccount = async (accountId, topicId, id, dateFrom, dateTo, contextType = 'conversation') => {
+    getContextHistoryOfMentionForAccount = async (
+        accountId,
+        topicId,
+        id,
+        dateFrom,
+        dateTo,
+        contextType = 'conversation'
+    ) => {
         if (!accountId) {
             throw 'Please give an account ID';
         }
@@ -1556,10 +1490,7 @@ class EngageApi {
             limit: limit,
         });
 
-        return await this.request(
-            url,
-            'get',
-        );
+        return await this.request(url);
     };
 
     /**
@@ -1586,10 +1517,7 @@ class EngageApi {
 
         let url = new URL(`/${accountId}/inbox/mention/${topicId}/${id}`, EngageApi.baseUrl);
 
-        return await this.request(
-            url,
-            'get',
-        );
+        return await this.request(url);
     };
 
     /**
@@ -1605,7 +1533,7 @@ class EngageApi {
      * @param {object} [options=null] - A JSON encoded object of options for the update. Supported keys: "tags_edit_mode", "sendMail", "hide_on_service", "delete_on_service"
      * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} - The updated mention item.
      */
-    updateMention = async (accountId,  topicId, id, updates = null, listFilter = '', options = null) => {
+    updateMention = async (accountId, topicId, id, updates = null, listFilter = '', options = null) => {
         if (!accountId) {
             throw 'Please give an account ID';
         }
@@ -1618,12 +1546,7 @@ class EngageApi {
             options: options,
         };
 
-        return await this.request(
-            url,
-            'post',
-            null,
-            body,
-        );
+        return await this.request(url, 'post', null, body);
     };
 
     /**
@@ -1655,12 +1578,7 @@ class EngageApi {
             options: options,
         };
 
-        return await this.request(
-            url,
-            'delete',
-            null,
-            body,
-        );
+        return await this.request(url, 'delete', null, body);
     };
 
     /**
@@ -1694,10 +1612,7 @@ class EngageApi {
             sort: sort,
         });
 
-        return await this.request(
-            url,
-            'get',
-        );
+        return await this.request(url);
     };
 
     /**
@@ -1728,12 +1643,8 @@ class EngageApi {
             mention_id: mentionId,
         });
 
-        return await this.request(
-            url,
-            'get',
-        );
+        return await this.request(url);
     };
-
 
     /**
      * Publishes a new message to one or more of social profiles (create drafts and send messages for approval).
@@ -1755,13 +1666,26 @@ class EngageApi {
      * @param {string} [cannedResponseId] - 	Id of a canned response (The id is required for canned responses of the type CSAT, NPS® or Buttons). If the id is given, the number of usages will increase. If you use a canned response, the message of the response should be given in the message field and images should be added to the media field.
      * @returns {Promise<Promise<*>|Promise<void>|ClientHttp2Stream|ClientRequest|*>} - An object contain both an array of message items and the publisher_mention item that was just created.
      */
-    updatePublisherServicesAndOptions = async (accountId, services, to, subject, message, status, datePublish, type, topicId, mentionId, media, cannedResponseId) => {
+    updatePublisherServicesAndOptions = async (
+        accountId,
+        services,
+        to,
+        subject,
+        message,
+        status,
+        datePublish,
+        type,
+        topicId,
+        mentionId,
+        media,
+        cannedResponseId
+    ) => {
         if (!accountId) {
             throw 'Please give an account ID';
         }
 
         if (!services) {
-            throw 'Please give a JSON encoded array of items with properties \'type\' and \'service_id\'.';
+            throw "Please give a JSON encoded array of items with properties 'type' and 'service_id'.";
         }
 
         let url = new URL(`/${accountId}/publisher/add`, EngageApi.baseUrl);
@@ -1780,12 +1704,7 @@ class EngageApi {
             canned_response_id: cannedResponseId,
         };
 
-        return await this.request(
-            url,
-            'post',
-            null,
-            body,
-        );
+        return await this.request(url, 'post', null, body);
     };
 
     /**
@@ -1807,10 +1726,7 @@ class EngageApi {
 
         let url = new URL(`/${accountId}/publisher/mention/${id}`, EngageApi.baseUrl);
 
-        return await this.request(
-            url,
-            'get',
-        );
+        return await this.request(url);
     };
 
     /**
@@ -1843,12 +1759,7 @@ class EngageApi {
             options: options,
         };
 
-        return await this.request(
-            url,
-            'get',
-            null,
-            body,
-        );
+        return await this.request(url, 'post', null, body);
     };
 
     /**
@@ -1880,14 +1791,10 @@ class EngageApi {
             limit: limit,
         });
 
-        return await this.request(
-            url,
-            'get',
-        );
+        return await this.request(url);
     };
 
     /** end Inbox API calls **/
-
 }
 
 export default EngageApi;

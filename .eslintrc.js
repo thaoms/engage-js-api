@@ -4,7 +4,7 @@ module.exports = {
         "browser": false,
         "es6": true,
     },
-    "parser": "eslint",
+    "parser": "babel-eslint",
     "extends": [
         "plugin:prettier/recommended",
         "eslint:recommended",
@@ -24,5 +24,6 @@ module.exports = {
         "linebreak-style": ["error", "unix"],
         "no-console": ["error", {"allow": ["warn", "error"]}],
         "prettier/prettier": "error",
+        "no-undef": "off",
     }
 };
