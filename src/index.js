@@ -1,3 +1,6 @@
+import "core-js/features/url";
+import "core-js/features/url-search-params";
+
 /**
  * The Engage API
  * @author Thomas Van Kerckvoorde <thomas.vankerckvoorde@clarabridge.com>

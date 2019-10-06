@@ -7,16 +7,17 @@
         "engage",
         "api"
     ],
-    "main": "src/index.js",
+    "main": "dist/index.js",
     "scripts": {
         "docs": "jsdoc -r -c jsdoc.json",
         "test-run": "babel-node index.js",
         "prettier": "prettier --check ./src/**",
         "lint": "eslint ./src --ext .js",
         "lint-fix": "npm lint --fix",
+        "build": "rollup --config rollup.config.js",
         "upgrade-interactive": "ncu",
         "update-packages": "ncu -u",
-        "release": "npm version $TYPE -m '📦 Upgrade package to %s' && npm publish && git push && git push --tags",
+        "release": "npm run build && npm version $TYPE -m '📦 Upgrade package to %s' && npm publish && git push && git push --tags",
         "release-major": "TYPE=major npm run release",
         "release-minor": "TYPE=minor npm run release",
         "release-patch": "TYPE=patch npm run release"
@@ -45,7 +46,12 @@
         "jsdoc": "^3.6.3",
         "minami": "^1.2.3",
         "npm-check-updates": "^3.1.23",
-        "prettier": "1.18.2"
+        "prettier": "1.18.2",
+        "rollup": "^1.23.1",
+        "rollup-plugin-babel": "^4.3.3",
+        "rollup-plugin-commonjs": "^10.1.0",
+        "rollup-plugin-node-resolve": "^5.2.0",
+        "rollup-plugin-terser": "^5.1.2"
     },
     "babel": {
         "presets": [
