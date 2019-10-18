@@ -230,7 +230,7 @@ class EngageApi {
         let url = new URL(`/${accountId}/settings/user/${userId}`, EngageApi.baseUrl);
 
         const body = {
-            updates: updates,
+            updates: JSON.stringify(updates),
         };
 
         return await this.request(url, 'post', null, body);
@@ -326,7 +326,7 @@ class EngageApi {
         let url = new URL(`/${accountId}/settings/teams/`, EngageApi.baseUrl);
 
         const body = {
-            team: team,
+            team: JSON.stringify(team),
         };
 
         return await this.request(url, 'post', null, body);
@@ -380,8 +380,8 @@ class EngageApi {
         let url = new URL(`/${accountId}/settings/team/${teamId}`, EngageApi.baseUrl);
 
         const body = {
-            updates: updates,
-            options: options,
+            updates: JSON.stringify(updates),
+            options: options ? JSON.stringify(options) : null,
         };
 
         return await this.request(url, 'post', null, body);
@@ -501,7 +501,7 @@ class EngageApi {
         let url = new URL(`/${accountId}/settings/profilegroups`, EngageApi.baseUrl);
 
         const body = {
-            profile_group: profileGroup,
+            profile_group: JSON.stringify(profileGroup),
         };
 
         return await this.request(url, 'post', null, body);
@@ -532,7 +532,7 @@ class EngageApi {
         let url = new URL(`/${accountId}/settings/profilegroup/${groupId}`, EngageApi.baseUrl);
 
         const body = {
-            updates: updates,
+            updates: JSON.stringify(updates),
         };
 
         return await this.request(url, 'post', null, body);
@@ -747,7 +747,7 @@ class EngageApi {
         let url = new URL(`/${accountId}/settings/businesshoursschedules`, EngageApi.baseUrl);
 
         const body = {
-            business_hours_schedule: businessHoursSchedule,
+            business_hours_schedule: JSON.stringify(businessHoursSchedule),
         };
 
         return await this.request(url, 'post', null, body);
@@ -778,7 +778,7 @@ class EngageApi {
         let url = new URL(`/${accountId}/settings/businesshoursschedules/${id}`, EngageApi.baseUrl);
 
         const body = {
-            updates: updates,
+            updates: JSON.stringify(updates),
         };
 
         return await this.request(url, 'post', null, body);
@@ -952,7 +952,7 @@ class EngageApi {
         let url = new URL(`/${accountId}/insights/facets`, EngageApi.baseUrl);
 
         url = this.addQueryParams(url, {
-            facetdefinitions: facetDefinitions,
+            facetdefinitions: JSON.stringify(facetDefinitions),
             filter: filter,
             date_from: dateFrom,
             date_to: dateTo,
@@ -1242,7 +1242,7 @@ class EngageApi {
         let url = new URL(`/${accountId}/inbox/add`, EngageApi.baseUrl);
 
         const body = {
-            mentions: mentions,
+            mentions: JSON.stringify(mentions),
         };
 
         return await this.request(url, 'post', null, body);
@@ -1301,8 +1301,8 @@ class EngageApi {
         let url = new URL(`/${accountId}/inbox/contact/${contactId}`, EngageApi.baseUrl);
 
         const body = {
-            updates: updates,
-            options: options,
+            updates: JSON.stringify(updates),
+            options: options ? JSON.stringify(options) : null,
         };
 
         return await this.request(url, 'post', null, body);
@@ -1397,8 +1397,8 @@ class EngageApi {
         let url = new URL(`/${accountId}/inbox/contact/${service}/${serviceId}`, EngageApi.baseUrl);
 
         const body = {
-            updates: updates,
-            options: options,
+            updates: JSON.stringify(updates),
+            options: options ? JSON.stringify(options) : null,
         };
 
         return await this.request(url, 'post', null, body);
@@ -1545,7 +1545,7 @@ class EngageApi {
      * @param {string} accountId
      * @param {string} topicId
      * @param {string} id
-     * @param {object} [updates=null] - 	A JSON encoded object of changes you want to make. Structured as a mention item, but with only the keys you want to update.
+     * @param {object} [updates=null] - A JSON encoded object of changes you want to make. Structured as a mention item, but with only the keys you want to update.
      (See examples for supported updates.)
      * @param {string} [listFilter=''] - Check if the updated mention still fits in this optional filter
      * @param {object} [options=null] - A JSON encoded object of options for the update. Supported keys: "tags_edit_mode", "sendMail", "hide_on_service", "delete_on_service"
@@ -1559,9 +1559,9 @@ class EngageApi {
         let url = new URL(`/${accountId}/inbox/mention/${topicId}/${id}`, EngageApi.baseUrl);
 
         const body = {
-            updates: updates,
+            updates: updates ? JSON.stringify(updates) : null,
             list_filter: listFilter,
-            options: options,
+            options: options ? JSON.stringify(options) : null,
         };
 
         return await this.request(url, 'post', null, body);
@@ -1593,7 +1593,7 @@ class EngageApi {
         let url = new URL(`/${accountId}/inbox/mention/${topicId}/${id}`, EngageApi.baseUrl);
 
         const body = {
-            options: options,
+            options: options ? JSON.stringify(options) : null,
         };
 
         return await this.request(url, 'delete', null, body);
@@ -1773,8 +1773,8 @@ class EngageApi {
         let url = new URL(`/${accountId}/publisher/mention/${id}`, EngageApi.baseUrl);
 
         const body = {
-            updates: updates,
-            options: options,
+            updates: JSON.stringify(updates),
+            options: options ? JSON.stringify(options) : null,
         };
 
         return await this.request(url, 'post', null, body);
