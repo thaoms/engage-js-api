@@ -2948,7 +2948,7 @@ function EngageApi(httpClient, accessToken) {
             case 6:
               url = new URL("/".concat(accountId, "/settings/user/").concat(userId), EngageApi.baseUrl);
               body = {
-                updates: updates
+                updates: JSON.stringify(updates)
               };
               _context5.next = 10;
               return _this.request(url, 'post', null, body);
@@ -3131,7 +3131,7 @@ function EngageApi(httpClient, accessToken) {
             case 4:
               url = new URL("/".concat(accountId, "/settings/teams/"), EngageApi.baseUrl);
               body = {
-                team: team
+                team: JSON.stringify(team)
               };
               _context9.next = 8;
               return _this.request(url, 'post', null, body);
@@ -3241,8 +3241,8 @@ function EngageApi(httpClient, accessToken) {
             case 7:
               url = new URL("/".concat(accountId, "/settings/team/").concat(teamId), EngageApi.baseUrl);
               body = {
-                updates: updates,
-                options: options
+                updates: JSON.stringify(updates),
+                options: options ? JSON.stringify(options) : null
               };
               _context11.next = 11;
               return _this.request(url, 'post', null, body);
@@ -3468,7 +3468,7 @@ function EngageApi(httpClient, accessToken) {
             case 4:
               url = new URL("/".concat(accountId, "/settings/profilegroups"), EngageApi.baseUrl);
               body = {
-                profile_group: profileGroup
+                profile_group: JSON.stringify(profileGroup)
               };
               _context16.next = 8;
               return _this.request(url, 'post', null, body);
@@ -3526,7 +3526,7 @@ function EngageApi(httpClient, accessToken) {
             case 6:
               url = new URL("/".concat(accountId, "/settings/profilegroup/").concat(groupId), EngageApi.baseUrl);
               body = {
-                updates: updates
+                updates: JSON.stringify(updates)
               };
               _context17.next = 10;
               return _this.request(url, 'post', null, body);
@@ -3885,7 +3885,7 @@ function EngageApi(httpClient, accessToken) {
             case 4:
               url = new URL("/".concat(accountId, "/settings/businesshoursschedules"), EngageApi.baseUrl);
               body = {
-                business_hours_schedule: businessHoursSchedule
+                business_hours_schedule: JSON.stringify(businessHoursSchedule)
               };
               _context24.next = 8;
               return _this.request(url, 'post', null, body);
@@ -3943,7 +3943,7 @@ function EngageApi(httpClient, accessToken) {
             case 6:
               url = new URL("/".concat(accountId, "/settings/businesshoursschedules/").concat(id), EngageApi.baseUrl);
               body = {
-                updates: updates
+                updates: JSON.stringify(updates)
               };
               _context25.next = 10;
               return _this.request(url, 'post', null, body);
@@ -4235,7 +4235,7 @@ function EngageApi(httpClient, accessToken) {
             case 4:
               url = new URL("/".concat(accountId, "/insights/facets"), EngageApi.baseUrl);
               url = _this.addQueryParams(url, {
-                facetdefinitions: facetDefinitions,
+                facetdefinitions: JSON.stringify(facetDefinitions),
                 filter: filter,
                 date_from: dateFrom,
                 date_to: dateTo,
@@ -4738,7 +4738,7 @@ function EngageApi(httpClient, accessToken) {
             case 4:
               url = new URL("/".concat(accountId, "/inbox/add"), EngageApi.baseUrl);
               body = {
-                mentions: mentions
+                mentions: JSON.stringify(mentions)
               };
               _context43.next = 8;
               return _this.request(url, 'post', null, body);
@@ -4855,8 +4855,8 @@ function EngageApi(httpClient, accessToken) {
             case 7:
               url = new URL("/".concat(accountId, "/inbox/contact/").concat(contactId), EngageApi.baseUrl);
               body = {
-                updates: updates,
-                options: options
+                updates: JSON.stringify(updates),
+                options: options ? JSON.stringify(options) : null
               };
               _context45.next = 11;
               return _this.request(url, 'post', null, body);
@@ -5036,8 +5036,8 @@ function EngageApi(httpClient, accessToken) {
             case 8:
               url = new URL("/".concat(accountId, "/inbox/contact/").concat(service, "/").concat(serviceId), EngageApi.baseUrl);
               body = {
-                updates: updates,
-                options: options
+                updates: JSON.stringify(updates),
+                options: options ? JSON.stringify(options) : null
               };
               _context48.next = 12;
               return _this.request(url, 'post', null, body);
@@ -5315,9 +5315,9 @@ function EngageApi(httpClient, accessToken) {
             case 5:
               url = new URL("/".concat(accountId, "/inbox/mention/").concat(topicId, "/").concat(id), EngageApi.baseUrl);
               body = {
-                updates: updates,
+                updates: updates ? JSON.stringify(updates) : null,
                 list_filter: listFilter,
-                options: options
+                options: options ? JSON.stringify(options) : null
               };
               _context53.next = 9;
               return _this.request(url, 'post', null, body);
@@ -5380,7 +5380,7 @@ function EngageApi(httpClient, accessToken) {
             case 7:
               url = new URL("/".concat(accountId, "/inbox/mention/").concat(topicId, "/").concat(id), EngageApi.baseUrl);
               body = {
-                options: options
+                options: options ? JSON.stringify(options) : null
               };
               _context54.next = 11;
               return _this.request(url, 'delete', null, body);
@@ -5642,8 +5642,8 @@ function EngageApi(httpClient, accessToken) {
             case 7:
               url = new URL("/".concat(accountId, "/publisher/mention/").concat(id), EngageApi.baseUrl);
               body = {
-                updates: updates,
-                options: options
+                updates: JSON.stringify(updates),
+                options: options ? JSON.stringify(options) : null
               };
               _context59.next = 11;
               return _this.request(url, 'post', null, body);
